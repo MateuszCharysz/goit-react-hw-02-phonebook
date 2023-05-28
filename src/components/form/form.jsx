@@ -1,19 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import css from './Form.module.css'
 
-const Form = ({render, funcSubmit, funcChange}) => {
-  return (
-    <form onSubmit={funcSubmit}>{render}</form>
-  )
-}
+const Form = ({ render, funcSubmit }) => {
+  return <form onSubmit={funcSubmit} className={css.form}>{render}</form>;
+};
 
 Form.propTypes = {
-    render: PropTypes.oneOf(
-        PropTypes.func,
-        PropTypes.element
-    ).isRequired,
-    funcSubmit: PropTypes.func.isRequired,
-    funcChange: PropTypes.func
-}
+  render: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
+  funcSubmit: PropTypes.func.isRequired,
+};
 
-export default Form
+export default Form;

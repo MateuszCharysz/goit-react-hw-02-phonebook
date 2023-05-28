@@ -10,7 +10,7 @@ const Button = ({label, typeOfBtn}) => {
 
 Button.propTypes = {
     label: PropTypes.string.isRequired,
-    typeof: PropTypes.string.isRequired
+    typeOfBtn: PropTypes.string.isRequired
 }
 
 export default Button

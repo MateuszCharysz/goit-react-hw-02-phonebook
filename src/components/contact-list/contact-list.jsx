@@ -5,18 +5,20 @@ const ContactList = ({ arr }) => {
   return (
     <ul>
       {arr.map(({ id, name, number }) => (
-        <li key={id}>{name}</li>
+        <li key={id}>{`${name} ${number}`}</li>
       ))}
     </ul>
   );
 };
 
 ContactList.propTypes = {
-  arr: PropTypes.arrayOf([{
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string,
-  }]),
+  arr: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string,
+    }),
+  ),
 };
 
 export default ContactList;
