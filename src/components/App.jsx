@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Form from './form/form';
 import Input from './input/input';
@@ -8,8 +8,6 @@ import css from './App.module.css';
 import { nanoid } from 'nanoid';
 
 export class App extends Component {
-  // static propTypes = { contacts: Array, name: String };
-
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -27,6 +25,16 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
+  filterContacts = () =>
+    this.state.contacts.filter(contact =>
+      contact.name
+        .toLocaleLowerCase()
+        .includes(this.state.filter.toLocaleLowerCase()),
+    );
+
+  isName = (contacts = this.state.contacts) =>
+    contacts.name.toLowerCase() === this.filter.toLowerCase();
+
   submitHandler = e => {
     e.preventDefault();
     this.setState(prevState => ({
@@ -35,14 +43,14 @@ export class App extends Component {
         { id: this.idCreate, name: this.state.name, number: this.state.number },
       ],
     }));
-    this.formReset()
+    this.formReset();
   };
 
   idCreate = nanoid();
 
   formReset = () => {
-    this.setState({name:"", number: "", filter: ""});
-  }
+    this.setState({ name: '', number: '', filter: '' });
+  };
 
   render() {
     return (
@@ -81,13 +89,12 @@ export class App extends Component {
           label="Find contacts by name"
           type="text"
           dataName="filter"
-          validation="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          validation="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Search is not case sensitive"
-          required
           funcChange={this.changeHandler}
           stateField={this.state.filter}
         />
-        <ContactList arr={this.state.contacts} />
+        <ContactList arr={this.filterContacts()} />
       </div>
     );
   }
