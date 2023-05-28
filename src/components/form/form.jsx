@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import Input from 'components/input/input';
 import Button from 'components/button/button';
@@ -64,7 +64,7 @@ export class Form extends Component {
 
 export default Form;
 
-Form.propTypes = {
-  render: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
-  funcSubmit: PropTypes.func.isRequired,
-};
+// Form.propTypes = {
+//   render: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
+//   funcSubmit: PropTypes.func.isRequired,
+// };
