@@ -6,7 +6,7 @@ const ContactList = ({ arr, btnHandler }) => {
   return (
     <ul>
       {arr.map(({ id, name, number }) => (
-        <li key={id}>{`${name} ${number}`} <Button label='Delete' typeOfBtn='button' btnFunc={() => btnHandler(id)} listdata={id}/></li>
+        <li key={id}>{`${name} ${number}`} <Button label='Delete' typeOfBtn='button' btnFunc={() => btnHandler(id)}/></li>
       ))}
     </ul>
   );

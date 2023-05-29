@@ -79,14 +79,4 @@ export class App extends Component {
   }
 }
 
-// App.propTypes ={
-//   state: PropTypes.shape(
-//     contacts: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         id: PropTypes.string
-//       })
-//     ),
-//     name:
-//   )
-// }
 export default App;

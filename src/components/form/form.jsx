@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import Input from 'components/input/input';
 import Button from 'components/button/button';
-import { nanoid } from 'nanoid';
-
-// const Form = ({ render, funcSubmit }) => {
-//   return <form onSubmit={funcSubmit} className={css.form}>{render}</form>;
-// };
 
 export class Form extends Component {
   state = {
@@ -15,12 +10,14 @@ export class Form extends Component {
     number: '',
   };
 
-  submitHandler = () => {return this.state}
+  submitHandler = () => {
+    return this.state;
+  };
 
   formReset = () => {
     this.setState({ name: '', number: '' });
   };
-  idCreate = nanoid();
+
   changeHandler = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -28,7 +25,11 @@ export class Form extends Component {
   render() {
     return (
       <form
-        onSubmit={(e) => {e.preventDefault();this.props.handler(this.submitHandler());}}
+        onSubmit={e => {
+          e.preventDefault();
+          this.props.handler(this.submitHandler());
+          this.formReset();
+        }}
         className={css.form}
       >
         <Input
@@ -59,7 +60,6 @@ export class Form extends Component {
 
 export default Form;
 
-// Form.propTypes = {
-//   render: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
-//   funcSubmit: PropTypes.func.isRequired,
-// };
+Form.propTypes = {
+  handler: PropTypes.func.isRequired,
+};

@@ -1,12 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import css from './Input.module.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import css from './Input.module.css';
 
-const Input = ({label, type, dataName, validation, title, funcChange, stateField }) => {
+const Input = ({
+  label,
+  type,
+  dataName,
+  validation,
+  title,
+  funcChange,
+  stateField,
+}) => {
   return (
     <label className={css.label}>
       {label}
-      <input className={css.input}
+      <input
+        className={css.input}
         type={type}
         name={dataName}
         pattern={validation}
@@ -17,7 +26,7 @@ const Input = ({label, type, dataName, validation, title, funcChange, stateField
       />
     </label>
   );
-}
+};
 
 Input.propTypes = {
   label: PropTypes.string.isRequired,
@@ -26,7 +35,7 @@ Input.propTypes = {
   validation: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   funcChange: PropTypes.func.isRequired,
-  stateField: PropTypes.string.isRequired
+  stateField: PropTypes.string.isRequired,
 };
 
-export default Input
+export default Input;
