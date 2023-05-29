@@ -30,15 +30,27 @@ export class App extends Component {
         .includes(this.state.filter.toLocaleLowerCase()),
     );
 
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts.filter(contact => contact.id !== id)],
+    }));
+  };
+
   isName = (contacts = this.state.contacts) =>
     contacts.name.toLowerCase() === this.filter.toLowerCase();
+
   submitForm = callback => {
-    console.log(callback);
-    let formState = { id: this.idCreate(), ...callback };
-    console.log(formState);
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, formState],
-    }));
+    if (
+      this.state.contacts.filter(contact => contact.name === callback.name)
+        .length !== 1
+    ) {
+      let formState = { id: this.idCreate(), ...callback };
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, formState],
+      }));
+    } else {
+      alert(`${callback.name} is already in contacts.`);
+    }
   };
 
   idCreate = () => nanoid();
@@ -58,7 +70,10 @@ export class App extends Component {
           funcChange={this.changeHandler}
           stateField={this.state.filter}
         />
-        <ContactList arr={this.filterContacts()} />
+        <ContactList
+          arr={this.filterContacts()}
+          btnHandler={this.deleteContact}
+        />
       </div>
     );
   }
