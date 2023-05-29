@@ -1,8 +1,6 @@
-// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Form } from './form/form';
 import Input from './input/input';
-// import Button from './button/button';
 import ContactList from './contact-list/contact-list';
 import css from './App.module.css';
 import { nanoid } from 'nanoid';
