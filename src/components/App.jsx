@@ -33,27 +33,15 @@ export class App extends Component {
   isName = (contacts = this.state.contacts) =>
     contacts.name.toLowerCase() === this.filter.toLowerCase();
   submitForm = callback => {
+    console.log(callback);
+    let formState = { id: this.idCreate(), ...callback };
+    console.log(formState);
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id: this.idCreate, callback }],
+      contacts: [...prevState.contacts, formState],
     }));
-    callback();
   };
-  // submitHandler = e => {
-  //   // e.preventDefault();
-  //   this.setState(prevState => ({
-  //     contacts: [
-  //       ...prevState.contacts,
-  //       { id: this.idCreate, name: this.state.name, number: this.state.number },
-  //     ],
-  //   }));
-  //   this.formReset();
-  // };
 
-  idCreate = nanoid();
-
-  formReset = () => {
-    this.setState({ name: '', number: '', filter: '' });
-  };
+  idCreate = () => nanoid();
 
   render() {
     return (
@@ -70,7 +58,7 @@ export class App extends Component {
           funcChange={this.changeHandler}
           stateField={this.state.filter}
         />
-        <ContactList arr={this.state.contacts} />
+        <ContactList arr={this.filterContacts()} />
       </div>
     );
   }

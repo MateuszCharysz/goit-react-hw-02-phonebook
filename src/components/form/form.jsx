@@ -14,14 +14,9 @@ export class Form extends Component {
     name: '',
     number: '',
   };
-  // funcSubmit = (handler) => {
-  //   callback();
-  // };
-  submitHandler = e => {
-    e.preventDefault();
-    return this.state;
-    // this.formReset();
-  };
+
+  submitHandler = () => {return this.state}
+
   formReset = () => {
     this.setState({ name: '', number: '' });
   };
@@ -33,7 +28,7 @@ export class Form extends Component {
   render() {
     return (
       <form
-        onSubmit={() => this.props.handler(this.submitHandler)}
+        onSubmit={(e) => {e.preventDefault();this.props.handler(this.submitHandler());}}
         className={css.form}
       >
         <Input
